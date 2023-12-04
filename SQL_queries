@@ -1,0 +1,47 @@
+## The Power of Data Analysis
+
+### 1. Total Transactions
+
+In September 2023, our analysis reveals a staggering 465,824 Inter-State Portability Transactions.
+
+```
+select sum(txn_count) as Total_Transaction from impds_sep_2023
+```
+
+### 2. State Insights
+
+Delving deeper, we find that DELHI led the states with the highest number of transactions, signifying significant activity in these regions.
+
+```
+select sum(txn_count) as transactions, salestatename from impds_sep_2023
+group by salestatename
+order by txn_count desc
+limit 1;
+```
+
+### 3. Average Transaction Amount
+
+The financial impact of the program is evident, with an average transaction amount of 1429.
+
+```
+select round(avg(txn_count)) as transactions from impds_sep_2023;
+```
+
+### 4. State-wise Analysis
+
+Further exploring, we identify the average transaction amount for each state, offering insights into regional variations.
+
+```
+select avg(txn_count) as transactions, salestatename from impds_sep_2023
+group by salestatename;
+```
+
+### 5. Transaction Status
+
+Examining transaction statuses on homestates provides a snapshot of the program's overall efficiency.
+
+```
+select homestatename, count(homestatecode) as HomeState from impds_sep_2023
+group by homestatecode
+order by HomeState desc;
+```
